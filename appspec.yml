@@ -3,9 +3,11 @@ os: linux
 files:
   - source: /index.html
     destination: /usr/share/nginx/html/
-    file_exists_behavior: OVERWRITE
 hooks:
   BeforeInstall:
+    - location: scripts/remove_existing.sh
+      timeout: 300
+      runas: root
     - location: scripts/install_nginx.sh
       timeout: 300
       runas: root
